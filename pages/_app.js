@@ -5,9 +5,10 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { Provider } from 'react-redux'
-import store from './../src/state/store'
-export default function MyApp(props) {
-  const { Component, pageProps } = props;
+import { useStore } from './../src/state/store'
+
+export default function MyApp({ Component, pageProps }) {
+  const store = useStore(pageProps.initialReduxState);
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
