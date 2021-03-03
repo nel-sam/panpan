@@ -1,23 +1,21 @@
 import React from 'react';
 import { Container, Typography } from "@material-ui/core";
-import { connect } from "react-redux";
-import { doughs } from './../state/selectors/doughSelector';
+import { useSelector } from 'react-redux'
 
-class PlanDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      doughs: props.doughs
-    };
-  }
-
-  render() {
-    return <Container>
-      <Typography>Plans {this.state.doughs.length}</Typography>
-    </Container>;
-  }
+const useDoughs= () => {
+  return useSelector(
+    (state) => ({
+      doughs: state.doughs,
+    })
+  );
 }
 
-const mapStateToProps = state => ({ doughs: state.doughs });
+const PlanDisplay = () => {
+  const { doughs } = useDoughs();
 
-export default connect(mapStateToProps)(PlanDisplay);
+  return <Container>
+    <Typography>Plans {doughs.length}</Typography>
+  </Container>;
+}
+
+export default PlanDisplay;
