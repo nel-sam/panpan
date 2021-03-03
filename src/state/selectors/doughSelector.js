@@ -1,3 +1,1 @@
-export const doughs = state => {
-  return state.doughs;
-};
+export const doughs = store => store.doughs;

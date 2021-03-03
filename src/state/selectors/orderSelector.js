@@ -1,0 +1,1 @@
+export const orders = store => store.orders;

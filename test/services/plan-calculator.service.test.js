@@ -1,14 +1,14 @@
 import PlanCalculator from './../../src/services/plan-calculator.service';
 import { DoughTypes, LoafTypes } from './../../src/enums';
 
-describe("Plan Calculator", () => {
-  it("returns empty results when no params are provided", () => {
+describe('Plan Calculator', () => {
+  it('returns empty results when no params are provided', () => {
     const planCalculator = new PlanCalculator();
     const plan = planCalculator.calculatePlan();
     expect(plan).toStrictEqual([]);
   });
 
-  it("returns all dough types of same loaf type if ordered", () => {
+  it('returns all dough types of same loaf type if ordered', () => {
     const planCalculator = new PlanCalculator();
     const typesToMake = [
       DoughTypes.Banana,
@@ -32,7 +32,7 @@ describe("Plan Calculator", () => {
     expect(plan).toStrictEqual(customerOrders);
   });
 
-  it("returns all dough types of different loaf type if ordered", () => {
+  it('returns all dough types of different loaf type if ordered', () => {
     const planCalculator = new PlanCalculator();
     const typesToMake = [
       DoughTypes.Banana,
@@ -56,7 +56,7 @@ describe("Plan Calculator", () => {
     expect(plan).toStrictEqual(customerOrders);
   });
 
-  it("returns only require dough types for orders", () => {
+  it('returns only require dough types for orders', () => {
     const planCalculator = new PlanCalculator();
     const typesToMake = [
       DoughTypes.Banana,
@@ -77,7 +77,7 @@ describe("Plan Calculator", () => {
     }]);
   });
 
-  it("returns empty plan if customer orders dough type not being made", () => {
+  it('returns empty plan if customer orders dough type not being made', () => {
     const planCalculator = new PlanCalculator();
     const typesToMake = [ DoughTypes.WholeGrain, DoughTypes.Sourdough ];
     const customerOrders = [{
@@ -90,7 +90,7 @@ describe("Plan Calculator", () => {
     expect(plan).toStrictEqual([]);
   });
 
-  it("returns empty plan if customers order different loaf types of same dough type", () => {
+  it('returns empty plan if customers order different loaf types of same dough type', () => {
     const planCalculator = new PlanCalculator();
     const typesToMake = [ DoughTypes.WholeGrain, DoughTypes.Sourdough ];
     const customerOrders = [{

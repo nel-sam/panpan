@@ -8,39 +8,24 @@ import {
   Checkbox
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { setDoughs } from '../state/actions/doughAction';
-import { DoughTypes } from '../enums';
+import { setOrders} from '../state/actions/orderAction';
+import { DoughTypes, LoafTypes } from '../enums';
 
-class DoughEntry extends React.Component {
-  doughs = [];
+class OrderEntry extends React.Component {
+  orders = [];
 
   constructor(props) {
     super(props);
     this.state = {
-      sourdough: false,
-      banana: false,
-      wholeGrain: false,
+      orders: []
     }
   }
 
-  handleDoughToggle = (event) => {
-    const doughType = event.target.name;
-    const isChecked = event.target.checked;
-
+  handleAddOrder = (event) => {
     this.setState({
-      sourdough: doughType === DoughTypes.Sourdough ? isChecked : this.state.sourdough,
-      banana: doughType === DoughTypes.Banana ? isChecked : this.state.banana,
-      wholeGrain: doughType === DoughTypes.WholeGrain ? isChecked : this.state.wholeGrain,
     });
 
-    // Remove from doughs array if being unchecked
-    if (this.doughs.indexOf(doughType) >= 0 && !isChecked) {
-      this.doughs.splice(this.doughs.indexOf(doughType), 1);
-    } else if (this.doughs.indexOf(doughType) < 0) {
-      this.doughs.push(doughType);
-    }
-
-    this.props.setDoughs(this.doughs);
+    this.props.setOrder(this.orders);
   };
 
   render() {
@@ -63,4 +48,4 @@ class DoughEntry extends React.Component {
   }
 }
 
-export default connect(null, { setDoughs })(DoughEntry);
+export default connect(null, { setOrders })(OrderEntry);

@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import DoughEntry from '../src/components/dough-entry.component';
 import PlanDisplay from './../src/components/plan-display.component';
+import OrderEntry from './../src/components/order-entry.component';
 
 export default function Index() {
   return (
@@ -13,6 +14,7 @@ export default function Index() {
             PanPan Bread Planner
         </Typography>
           <DoughEntry />
+          <OrderEntry />
           <PlanDisplay />
         </Box>
       </Container>
