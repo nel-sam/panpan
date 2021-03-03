@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import PlanEntry from './../src/components/plan-entry.component';
 
 export default function Index() {
   return (
@@ -10,6 +11,7 @@ export default function Index() {
         <Typography variant="h4" component="h1" gutterBottom>
           PanPan Bread Planner
         </Typography>
+        <PlanEntry />
       </Box>
     </Container>
   );
