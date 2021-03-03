@@ -1,4 +1,4 @@
-export const BreadTypes = {
+export const DoughTypes = {
 	Sourdough: 'SOURDOUGH',
   Banana: 'BANANA',
   WholeGrain: 'WHOLEGRAIN',
