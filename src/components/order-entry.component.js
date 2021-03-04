@@ -5,7 +5,9 @@ import {
   FormLabel,
   FormGroup,
   TextField,
-  Typography
+  Typography,
+  Grid,
+  Box,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { setOrders } from '../state/actions/orderAction';
@@ -54,80 +56,90 @@ class OrderEntry extends React.Component {
     this.handleOrderChange(event.target.id, LoafTypes.Round, +event.target.value);
 
   render() {
-    return <Container>
+    return <Box border={1} borderColor="grey.500" borderRadius="1%" m={1}>
       <FormControl component='fieldset' style={{ marginTop: 30 }}>
-        <Container>
-          <FormLabel component='legend'>Pan Loaf Orders</FormLabel>
-          <FormGroup>
-            <TextField
-              id={DoughTypes.Sourdough}
-              label='Sour Dough'
-              type='number'
-              InputLabelProps={{ shrink: true }}
-              InputProps={{ inputProps: { min: 0 } }}
-              variant='outlined'
-              margin='normal'
-              onChange={this.handlePanOrderChange} />
-            <TextField
-              id={DoughTypes.Banana}
-              label='Banana'
-              type='number'
-              InputLabelProps={{ shrink: true }}
-              InputProps={{ inputProps: { min: 0 } }}
-              variant='outlined'
-              margin='normal'
-              onChange={this.handlePanOrderChange} />
-            <TextField
-              id={DoughTypes.WholeGrain}
-              label='Whole Grain'
-              type='number'
-              InputLabelProps={{ shrink: true }}
-              InputProps={{ inputProps: { min: 0 } }}
-              variant='outlined'
-              margin='normal'
-              onChange={this.handlePanOrderChange} />
-          </FormGroup>
-        </Container>
-        <Container>
-          <FormLabel component='legend'>Round Loaf Orders</FormLabel>
-          <FormGroup>
-            <TextField
-              id={DoughTypes.Sourdough}
-              label='Sour Dough'
-              type='number'
-              InputLabelProps={{ shrink: true }}
-              InputProps={{ inputProps: { min: 0 } }}
-              variant='outlined'
-              margin='normal'
-              onChange={this.handleRoundOrderChange} />
-            <TextField
-              id={DoughTypes.Banana}
-              label='Banana'
-              type='number'
-              InputLabelProps={{ shrink: true }}
-              InputProps={{ inputProps: { min: 0 } }}
-              variant='outlined'
-              margin='normal'
-              onChange={this.handleRoundOrderChange} />
-            <TextField
-              id={DoughTypes.WholeGrain}
-              label='Whole Grain'
-              type='number'
-              InputLabelProps={{ shrink: true }}
-              InputProps={{ inputProps: { min: 0 } }}
-              variant='outlined'
-              margin='normal'
-              onChange={this.handleRoundOrderChange} />
-          </FormGroup>
-        </Container>
+        <Grid container>
+          <Grid item xs>
+            <Container>
+              <FormLabel component='legend'>Pan Loaf Orders</FormLabel>
+              <FormGroup>
+                <TextField
+                  id={DoughTypes.Sourdough}
+                  label='Sour Dough'
+                  type='number'
+                  InputLabelProps={{ shrink: true }}
+                  InputProps={{ inputProps: { min: 0 } }}
+                  variant='outlined'
+                  margin='normal'
+                  onChange={this.handlePanOrderChange} />
+                <TextField
+                  id={DoughTypes.Banana}
+                  label='Banana'
+                  type='number'
+                  InputLabelProps={{ shrink: true }}
+                  InputProps={{ inputProps: { min: 0 } }}
+                  variant='outlined'
+                  margin='normal'
+                  onChange={this.handlePanOrderChange} />
+                <TextField
+                  id={DoughTypes.WholeGrain}
+                  label='Whole Grain'
+                  type='number'
+                  InputLabelProps={{ shrink: true }}
+                  InputProps={{ inputProps: { min: 0 } }}
+                  variant='outlined'
+                  margin='normal'
+                  onChange={this.handlePanOrderChange} />
+              </FormGroup>
+            </Container>
+          </Grid>
+          <Grid item xs>
+            <Container>
+              <FormLabel component='legend'>Round Loaf Orders</FormLabel>
+              <FormGroup>
+                <TextField
+                  id={DoughTypes.Sourdough}
+                  label='Sour Dough'
+                  type='number'
+                  InputLabelProps={{ shrink: true }}
+                  InputProps={{ inputProps: { min: 0 } }}
+                  variant='outlined'
+                  margin='normal'
+                  onChange={this.handleRoundOrderChange} />
+                <TextField
+                  id={DoughTypes.Banana}
+                  label='Banana'
+                  type='number'
+                  InputLabelProps={{ shrink: true }}
+                  InputProps={{ inputProps: { min: 0 } }}
+                  variant='outlined'
+                  margin='normal'
+                  onChange={this.handleRoundOrderChange} />
+                <TextField
+                  id={DoughTypes.WholeGrain}
+                  label='Whole Grain'
+                  type='number'
+                  InputLabelProps={{ shrink: true }}
+                  InputProps={{ inputProps: { min: 0 } }}
+                  variant='outlined'
+                  margin='normal'
+                  onChange={this.handleRoundOrderChange} />
+              </FormGroup>
+            </Container>
+          </Grid>
+        </Grid>
       </FormControl>
-      <Container>
-        {this.state.orders.length > 0 && <Typography>Current order</Typography>}
-        {this.state.orders.map(order =>
-          <Typography>{order.doughType} {order.loafType}: {order.count}</Typography>) }
-      </Container>
-    </Container>;
+     { renderCurrentOrder(this.state.orders) }
+    </Box>;
   }
+}
+
+const renderCurrentOrder = (orders) => {
+  return <Box m={1}>
+  {orders.length > 0 && <Typography>Current order</Typography>}
+  {orders.map(order =>
+    <Typography>{order.doughType} {order.loafType}: {order.count}</Typography>)}
+</Box>;
 }
 
 export default connect(null, { setOrders })(OrderEntry);

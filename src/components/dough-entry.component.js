@@ -46,7 +46,7 @@ class DoughEntry extends React.Component {
   render() {
     return <Container>
       <FormControl required component="fieldset">
-        <FormLabel component="legend">Dough Types</FormLabel>
+        <FormLabel component="legend">Dough types you're making today</FormLabel>
         <FormGroup row>
           <FormControlLabel
             control={<Checkbox checked={this.state.sourdough} onChange={this.handleDoughToggle} name={DoughTypes.Sourdough} />}

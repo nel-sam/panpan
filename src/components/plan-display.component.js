@@ -1,5 +1,15 @@
 import React from 'react';
-import { Container, Typography } from "@material-ui/core";
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  TableContainer,
+  Box,
+} from "@material-ui/core";
 import { useSelector } from 'react-redux';
 import PlanCalculator from './../services/plan-calculator.service';
 
@@ -16,22 +26,35 @@ const PlanDisplay = () => {
   const { doughs, orders } = useStateObjs();
   const plan = (new PlanCalculator()).calculatePlan(doughs, orders);
 
-  return <Container>
+  return <Box border={1} borderColor="grey.500" borderRadius="1%" m={1}>
     {plan.length > 0 ? renderPlan(plan) : renderError(orders.length === 0)}
-  </Container>;
+  </Box>;
 }
 
 const renderPlan = (plan) => {
-  return <div>
-    <Typography>Plan</Typography>
-    {plan.map(element =>
-      <Typography>{element.doughType} {element.loafType}</Typography>)}
-  </div>;
+  return <Box m={1}>
+    <Typography>Baking Plan</Typography>
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <TableCell>Dough</TableCell>
+          <TableCell>Loaf</TableCell>
+        </TableHead>
+        <TableBody>
+          {plan.map(element => (
+            <TableRow key={`${element.doughType}-${element.loafType}`}>
+              <TableCell>{element.doughType}</TableCell>
+              <TableCell>{element.loafType}</TableCell>
+            </TableRow>))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </Box>;
 }
 
 const renderError = (planIsEmpty) => {
   return <div>
-    { !planIsEmpty && <Typography>Plan is not possible. Contact customers to let them know.</Typography>}
+    {!planIsEmpty && <Box m={1}><Typography>Plan is not possible. Contact customers to let them know.</Typography></Box>}
   </div>;
 }
 export default PlanDisplay;
