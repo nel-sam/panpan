@@ -129,17 +129,19 @@ class OrderEntry extends React.Component {
           </Grid>
         </Grid>
       </FormControl>
-     { renderCurrentOrder(this.state.orders) }
+      {renderCurrentOrder(this.state.orders)}
     </Box>;
   }
 }
 
 const renderCurrentOrder = (orders) => {
   return <Box m={1}>
-  {orders.length > 0 && <Typography>Current order</Typography>}
-  {orders.map(order =>
-    <Typography>{order.doughType} {order.loafType}: {order.count}</Typography>)}
-</Box>;
+    {orders.length > 0 && <Typography>Current order</Typography>}
+    <ul>
+      {orders.map(order =>
+        <li key={order.doughType+order.loafType}><Typography>{order.doughType} {order.loafType}: {order.count}</Typography></li>)}
+    </ul>
+  </Box>;
 }
 
 export default connect(null, { setOrders })(OrderEntry);

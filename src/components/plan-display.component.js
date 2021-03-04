@@ -37,8 +37,10 @@ const renderPlan = (plan) => {
     <TableContainer>
       <Table>
         <TableHead>
-          <TableCell>Dough</TableCell>
-          <TableCell>Loaf</TableCell>
+          <TableRow>
+            <TableCell>Dough</TableCell>
+            <TableCell>Loaf</TableCell>
+          </TableRow>
         </TableHead>
         <TableBody>
           {plan.map(element => (
