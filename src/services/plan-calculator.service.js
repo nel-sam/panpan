@@ -13,8 +13,9 @@ export default class PlanCalculator {
 
     const plan = [];
 
-    customerOrders.forEach(order => {
-      const indexIfExists = plan.indexOf(o => o.doughType === order.doughType);
+    for (let i = 0; i < customerOrders.length; i++) {
+      const order = customerOrders[i];
+      const indexIfExists = plan.findIndex(o => o.doughType === order.doughType);
 
       // Detect if customer ordered type not being made
       if (typesToMake.indexOf(order.doughType) < 0) {
@@ -23,11 +24,11 @@ export default class PlanCalculator {
 
       // Detect if two loaf types were ordered for the same bread type
       if (indexIfExists >= 0 && plan[indexIfExists].loafType !== order.loafType) {
-        return {};
+        return [];
       }
 
       plan.push(order);
-    });
+    }
 
     return plan;
   };

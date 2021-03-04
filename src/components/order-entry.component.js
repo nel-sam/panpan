@@ -26,7 +26,7 @@ class OrderEntry extends React.Component {
 
     if (index >= 0) {
       newOrders = [...this.state.orders];
-debugger
+
       if (count === 0) {
         newOrders.splice(index, 1);
       } else {
